@@ -1,37 +1,49 @@
+# Joke Creation Tool (refactoring the bad performance task) - About 80% finished
+# By Logan Vargas and Antonio Williams
+
+system_on = True
+joke_tag = []
+joke_punch = []
+
+def commence_the_knock_knock(joke_value):
+    input("Knock Knock ")
+    input(joke_tag[joke_value])
+    print(joke_punch[joke_value])
+    want_joke = input("Do you want to hear another joke or are you finished? ")
+    return want_joke
 
 
+# For as long as you want to make new jokes, then you can make as many as you want! The program will only stop looping after the user types in "end."
+while system_on == True:
 
-# make this performance task ready for submission
-# To give the user a fun experience hearing knock knock jokes
-
-joke = input("Do you want to hear a joke? ")
-if joke == "no":
-    print("Okay suit yourself!")
-while joke == "yes":
-    print("Great, Let's Play")
-    question = input("Do you want to hear a joke about robbers, tanks, or pencils? ")
-    if question == "robbers":
-        input("Knock Knock ")
-        input("Calder")
-        print("Calder police - I've been robbed!")
-        joke = input("Do you want to hear another joke or are you finished? ")
-    elif question == "tanks":
-        input("Knock Knock ")
-        input("Tank ")
-        input("You are welcome! ")
-        joke = input("Do you want to hear another joke or are you finished? ")
-    elif question == "pencils":
-        input("Knock Knock ")
-        input("Broken pencil ")
-        input("Nevermind, it's pointless! ")
-        joke = input("Do you want to hear another joke or are you finished? ")
-if joke == "finished":
-    rate = int(input("Please rate our game 1-10! "))
-    final_score = int(rate * 10)
-    print(str(final_score) + " percent satisfaction rate")
-    friend = input("Would you recommend this game to a friend? ")
-
-    if friend == "yes" or friend == "maybe":
-        print("Thanks, we appreciate it. ")
+    init_input = str(input("Welcome to the joke creation tool! Start by naming the joke that you want to make, or type 'end' to proceed to the next phase. "))
+    if init_input.lower() == "end":
+        break
     else:
-        print("Sorry you did not enjoy it. ")
+        joke_tag.append(init_input)
+        punch_input = str(input("Great name! Now, what will your punchline be when the user asks 'who?' "))
+        joke_punch.append(punch_input)
+        print(joke_tag)
+        print(joke_punch)
+        print("Great joke!")
+
+# Now, you can bring another person over to laugh at the jokes you've created! The program will display all of the jokes for you, and the user can select which one they want.
+print("Your friend made a slew of jokes for you to laugh at!")
+while system_on:
+
+# Here, the program will display the names of the jokes, and will actually move on if none are created! The user can select which joke they want.
+    print("The names of the jokes are as follows:")
+    print(joke_tag)
+    friend_input = str(input("Which joke do you want? Type 'end' to proceed to the next phase. "))
+    if friend_input.lower() == "end":
+        break
+    else:
+        temp1 = -1
+        heard_joke = 0
+        for x in joke_tag:
+            temp1 += 1
+            if friend_input.lower() == x.lower():
+                commence_the_knock_knock(temp1)
+                heard_joke = 1
+        if heard_joke == 0:
+            print("No match, try again!")
