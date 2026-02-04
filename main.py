@@ -9,7 +9,7 @@ def commence_the_knock_knock(joke_value):
     input("Knock Knock ")
     input(joke_tag[joke_value])
     print(joke_punch[joke_value])
-    want_joke = input("Do you want to hear another joke or are you finished? ")
+    want_joke = input("Do you want to hear another joke or are you finished? Type 'end' to proceed to the next phase. ")
     return want_joke
 
 
@@ -31,7 +31,7 @@ while system_on == True:
 print("Your friend made a slew of jokes for you to laugh at!")
 while system_on:
 
-# Here, the program will display the names of the jokes, and will actually move on if none are created! The user can select which joke they want.
+# Here, the program will display the names of the jokes, and will move on if none are created! The user can select which joke they want.
     print("The names of the jokes are as follows:")
     print(joke_tag)
     friend_input = str(input("Which joke do you want? Type 'end' to proceed to the next phase. "))
@@ -43,7 +43,11 @@ while system_on:
         for x in joke_tag:
             temp1 += 1
             if friend_input.lower() == x.lower():
-                commence_the_knock_knock(temp1)
+                end_early = commence_the_knock_knock(temp1)
                 heard_joke = 1
+                if end_early == "end":
+                    heard_joke = 2
         if heard_joke == 0:
             print("No match, try again!")
+        if heard_joke == 2:
+            break
